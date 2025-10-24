@@ -57,19 +57,7 @@
             app:layout_constraintStart_toStartOf="parent"
             />
 
-        <TextView
-            android:textSize="14sp"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="@string/app_instruction"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+
     </LinearLayout>
 
     <Button
