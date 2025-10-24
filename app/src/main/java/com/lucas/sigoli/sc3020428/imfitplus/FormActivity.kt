@@ -16,7 +16,7 @@ class FormActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar.toolbar)
-        supportActionBar?.title = "Informações pessoais"
+        supportActionBar?.title = "Informações Gerais"
 
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

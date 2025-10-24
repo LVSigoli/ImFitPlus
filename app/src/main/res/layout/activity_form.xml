@@ -10,17 +10,84 @@
         app:layout_constraintTop_toTopOf="parent"
         layout="@layout/activity_toolbar"/>
 
-    <TextView
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:textAlignment="center"
+
+    <EditText
+        android:inputType="text"
+        android:id="@+id/name_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="TELA DE FORMULARIO"/>
+        android:layout_marginVertical="16dp"
+        android:layout_marginHorizontal="2dp"
+        android:hint="@string/name_input_placeholder"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <EditText
+        android:inputType="number"
+        android:id="@+id/age_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+        android:layout_marginHorizontal="2dp"
+        android:hint="@string/age_input_placeholder"
+        app:layout_constraintTop_toBottomOf="@id/name_input"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/input_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+        app:layout_constraintTop_toBottomOf="@id/age_input">
+
+
+    <EditText
+        android:layout_weight="1"
+        android:inputType="number"
+        android:id="@+id/height_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="2dp"
+        android:hint="@string/height_cm_input"/>
+
+    <EditText
+        android:layout_weight="1"
+        android:inputType="number"
+        android:id="@+id/weight_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="2dp"
+        android:hint="@string/weight_kg_input"
+        app:layout_constraintTop_toBottomOf="@id/height_input"/>
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/button_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="32dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/back_button"
+            android:text="@string/back_label"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="2dp"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/calc_button"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="2dp"
+            android:layout_height="wrap_content"
+            android:text="@string/calculate_imc_label"
+            />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
