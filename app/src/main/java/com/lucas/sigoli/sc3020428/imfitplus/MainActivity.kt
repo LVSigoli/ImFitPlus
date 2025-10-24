@@ -1,5 +1,6 @@
 package com.lucas.sigoli.sc3020428.imfitplus
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,15 @@ class MainActivity : AppCompatActivity() {
 
        supportActionBar?.title= "Boas Vindas"
 
+        binding.startButton.setOnClickListener { handleContinueclick() }
 
+
+    }
+
+
+    fun handleContinueclick(){
+        val intent = Intent(this, FormActivity::class.java)
+
+        startActivity(intent)
     }
 }
