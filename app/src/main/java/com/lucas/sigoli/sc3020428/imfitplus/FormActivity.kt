@@ -1,18 +1,19 @@
 package com.lucas.sigoli.sc3020428.imfitplus
 
 import android.os.Bundle
+import android.widget.Toast
 import android.view.MenuItem
 import android.widget.ArrayAdapter
-import androidx.core.widget.doOnTextChanged
 import androidx.appcompat.app.AppCompatActivity
-import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityFormBinding
-import com.lucas.sigoli.sc3020428.imfitplus.dtos.SportsLevel
+
 import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
 import com.lucas.sigoli.sc3020428.imfitplus.enums.Gender
 import com.lucas.sigoli.sc3020428.imfitplus.enums.SportsLevel
+import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityFormBinding
+import com.lucas.sigoli.sc3020428.imfitplus.enums.UserErrors
+import com.lucas.sigoli.sc3020428.imfitplus.validators.UserValidator
 
 class FormActivity : AppCompatActivity() {
-
 
     private lateinit var binding: ActivityFormBinding
 
@@ -25,6 +26,10 @@ class FormActivity : AppCompatActivity() {
         setupToolbar(binding)
 
         setupSportsLevelSpinner()
+
+        binding.backButton.setOnClickListener { finish() }
+
+        binding.calcButton.setOnClickListener { handleCalculateClick() }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -33,11 +38,22 @@ class FormActivity : AppCompatActivity() {
                 finish()
                 true
             }
-
             else -> super.onOptionsItemSelected(item)
         }
     }
 
+    private fun handleCalculateClick() {
+        val user: User = createUser()
+
+        val message = UserValidator.validate(user)
+
+        if (!message.isEmpty()) {
+            showToast(message, Toast.LENGTH_LONG)
+            return
+        }
+
+
+    }
 
     private fun createUser(): User {
         val name = binding.nameInput.text.toString()
@@ -70,7 +86,6 @@ class FormActivity : AppCompatActivity() {
             height = height,
             sportsLevel = sportsLevel
         )
-
     }
 
     // Utils
@@ -92,6 +107,11 @@ class FormActivity : AppCompatActivity() {
         )
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
         binding.sportsLevelSpinner.adapter = adapter
+    }
+
+    private fun showToast(message: String, duration: Int) {
+        return Toast.makeText(this, message, duration).show()
     }
 }
