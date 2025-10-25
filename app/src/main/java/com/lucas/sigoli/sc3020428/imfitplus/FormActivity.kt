@@ -3,9 +3,12 @@ package com.lucas.sigoli.sc3020428.imfitplus
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doOnTextChanged
 import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityFormBinding
+import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityMainBinding
 
 class FormActivity : AppCompatActivity() {
+
 
     private lateinit var binding: ActivityFormBinding
 
@@ -15,14 +18,10 @@ class FormActivity : AppCompatActivity() {
         binding = ActivityFormBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar.toolbar)
-        supportActionBar?.title = "Informações Gerais"
+        setupToolbar(binding)
 
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
-
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
@@ -32,5 +31,16 @@ class FormActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    // Utils
+    fun setupToolbar(binding: ActivityFormBinding){
+        setSupportActionBar(binding.toolbar.toolbar)
+
+        supportActionBar?.title = "Informações Gerais"
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 }

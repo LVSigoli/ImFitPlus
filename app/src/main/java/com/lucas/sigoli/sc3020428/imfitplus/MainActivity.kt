@@ -14,22 +14,31 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
+
+        setupToolbar(binding)
+
+        binding.startButton.setOnClickListener { handleContinueClick() }
+    }
+
+// Utils
+  private fun setupToolbar(binding: ActivityMainBinding){
 
         setSupportActionBar(binding.toolbar.toolbar)
 
-       supportActionBar?.title= "Boas Vindas"
-
-        binding.startButton.setOnClickListener { handleContinueclick() }
-
+        supportActionBar?.title= "Boas Vindas"
 
     }
 
 
-    fun handleContinueclick(){
+    // Handlers
+    private fun handleContinueClick(){
         val intent = Intent(this, FormActivity::class.java)
 
         startActivity(intent)
     }
+
 }
