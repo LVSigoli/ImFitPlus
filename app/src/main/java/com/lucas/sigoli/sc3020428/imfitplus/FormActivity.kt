@@ -6,7 +6,10 @@ import android.widget.ArrayAdapter
 import androidx.core.widget.doOnTextChanged
 import androidx.appcompat.app.AppCompatActivity
 import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityFormBinding
+import com.lucas.sigoli.sc3020428.imfitplus.dtos.SportsLevel
 import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
+import com.lucas.sigoli.sc3020428.imfitplus.enums.Gender
+import com.lucas.sigoli.sc3020428.imfitplus.enums.SportsLevel
 
 class FormActivity : AppCompatActivity() {
 
@@ -35,17 +38,40 @@ class FormActivity : AppCompatActivity() {
         }
     }
 
-//
-//    private fun createUser(){
-//        val name = binding.nameInput.text.toString()
-//        val age = binding.ageInput.text.toString().toIntOrNull() ?: 0
-//        val height = binding.heightInput.text.toString().toDoubleOrNull()?: 0.00
-//        val weight = binding.weightInput.text.toString().toDoubleOrNull()?: 0.00
-//
-//
-//        return User(age = age, name = name, '', weight = weight, height = height, sportsLevel = '')
-//
-//    }
+
+    private fun createUser(): User {
+        val name = binding.nameInput.text.toString()
+        val age = binding.ageInput.text.toString().toIntOrNull() ?: 0
+        val height = binding.heightInput.text.toString().toDoubleOrNull() ?: 0.00
+        val weight = binding.weightInput.text.toString().toDoubleOrNull() ?: 0.00
+
+        val selectedGender = binding.genderGroup.checkedRadioButtonId
+        val selectedLevel = binding.sportsLevelSpinner.selectedItem.toString()
+
+
+        val sportsLevel = when (selectedLevel) {
+            "Leve" -> SportsLevel.LEVE
+            "Moderado" -> SportsLevel.MODERADO
+            "Intenso" -> SportsLevel.INTENSO
+            else -> SportsLevel.SEDENTARIO
+        }
+
+        val gender = when (selectedGender) {
+            R.id.gender_male -> Gender.MASCULINO
+            R.id.gender_female -> Gender.FEMININO
+            else -> Gender.NAO_INFORMADO
+        }
+
+        return User(
+            age = age,
+            name = name,
+            gender = gender,
+            weight = weight,
+            height = height,
+            sportsLevel = sportsLevel
+        )
+
+    }
 
     // Utils
     fun setupToolbar(binding: ActivityFormBinding) {
