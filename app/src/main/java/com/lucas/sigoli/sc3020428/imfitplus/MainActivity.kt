@@ -24,18 +24,16 @@ class MainActivity : AppCompatActivity() {
         binding.startButton.setOnClickListener { handleContinueClick() }
     }
 
-// Utils
-  private fun setupToolbar(binding: ActivityMainBinding){
-
+    // Utils
+    private fun setupToolbar(binding: ActivityMainBinding) {
         setSupportActionBar(binding.toolbar.toolbar)
 
-        supportActionBar?.title= "Boas Vindas"
-
+        supportActionBar?.title = "Boas Vindas"
     }
 
 
     // Handlers
-    private fun handleContinueClick(){
+    private fun handleContinueClick() {
         val intent = Intent(this, FormActivity::class.java)
 
         startActivity(intent)
