@@ -18,7 +18,6 @@ import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
 // Constants
 import com.lucas.sigoli.sc3020428.imfitplus.enums.Gender
 import com.lucas.sigoli.sc3020428.imfitplus.enums.SportsLevel
-import com.lucas.sigoli.sc3020428.imfitplus.utils.formatNumber
 
 // Services
 import com.lucas.sigoli.sc3020428.imfitplus.validators.UserValidator
@@ -175,22 +174,5 @@ class FormActivity : AppCompatActivity() {
 
         binding.sportsLevelSpinner.adapter = adapter
     }
-    fun applyMask(editText: EditText) {
-        var isEditing = false
-
-        editText.doOnTextChanged { text, _, _, _ ->
-            if (isEditing) return@doOnTextChanged
-
-            isEditing = true
-
-            val formatted = formatNumber(text.toString())
-            if (formatted != text.toString()) {
-                editText.setText(formatted)
-                editText.setSelection(formatted.length)
-            }
-
-        }
-    }
-
 
 }
