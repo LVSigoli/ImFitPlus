@@ -6,12 +6,13 @@ import android.widget.Toast
 import android.view.MenuItem
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import com.lucas.sigoli.sc3020428.imfitplus.constants.Actions
 
 import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
 import com.lucas.sigoli.sc3020428.imfitplus.enums.Gender
 import com.lucas.sigoli.sc3020428.imfitplus.enums.SportsLevel
 import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityFormBinding
-import com.lucas.sigoli.sc3020428.imfitplus.enums.UserErrors
+import com.lucas.sigoli.sc3020428.imfitplus.utils.showToast
 import com.lucas.sigoli.sc3020428.imfitplus.validators.UserValidator
 
 class FormActivity : AppCompatActivity() {
@@ -115,7 +116,4 @@ class FormActivity : AppCompatActivity() {
         binding.sportsLevelSpinner.adapter = adapter
     }
 
-    private fun showToast(message: String, duration: Int) {
-        return Toast.makeText(this, message, duration).show()
-    }
 }
