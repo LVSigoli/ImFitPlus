@@ -2,6 +2,7 @@ package com.lucas.sigoli.sc3020428.imfitplus
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.ArrayAdapter
 import androidx.core.widget.doOnTextChanged
 import androidx.appcompat.app.AppCompatActivity
 import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityFormBinding
@@ -19,6 +20,8 @@ class FormActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupToolbar(binding)
+
+        setupSportsLevelSpinner()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -53,5 +56,16 @@ class FormActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+
+    private fun setupSportsLevelSpinner() {
+        val adapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.sports_levels_labels,
+            android.R.layout.simple_spinner_item
+        )
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.sportsLevelSpinner.adapter = adapter
     }
 }
