@@ -102,7 +102,6 @@ class FormActivity : AppCompatActivity() {
         )
     }
 
-    // Utils
     fun setupToolbar(binding: ActivityFormBinding) {
         setSupportActionBar(binding.toolbar.toolbar)
 
