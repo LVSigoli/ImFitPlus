@@ -20,7 +20,7 @@
     </string>
     <string name="name_input_placeholder">Nome completo</string>
     <string name="age_input_placeholder">Idade</string>
-    <string name="height_cm_input">Altura em cm</string>
+    <string name="height_cm_input">Altura em M</string>
     <string name="weight_kg_input">Peso em KG</string>
     <string name="back_label">Voltar</string>
     <string name="calculate_imc_label">Calcular IMC</string>

@@ -6,7 +6,9 @@ import android.widget.Toast
 import android.view.MenuItem
 import android.content.Intent
 import android.widget.ArrayAdapter
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doOnTextChanged
 import com.lucas.sigoli.sc3020428.imfitplus.constants.Actions
 import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityFormBinding
 
@@ -16,12 +18,14 @@ import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
 // Constants
 import com.lucas.sigoli.sc3020428.imfitplus.enums.Gender
 import com.lucas.sigoli.sc3020428.imfitplus.enums.SportsLevel
+import com.lucas.sigoli.sc3020428.imfitplus.utils.formatNumber
 
 // Services
 import com.lucas.sigoli.sc3020428.imfitplus.validators.UserValidator
 
 // Utils
 import com.lucas.sigoli.sc3020428.imfitplus.utils.showToast
+import java.util.Locale
 
 class FormActivity : AppCompatActivity() {
 
@@ -36,6 +40,49 @@ class FormActivity : AppCompatActivity() {
         setupToolbar(binding)
 
         setupSportsLevelSpinner()
+
+        binding.heightInput.doOnTextChanged { text, _, _, _ ->
+            text?.let { input ->
+
+                val clean = input.toString().replace("[^0-9]".toRegex(), "")
+
+                if (clean.isNotEmpty()) {
+
+                    val value = clean.toDouble() / 100
+
+                    val formatted = String.format(Locale.US, "%.2f", value)
+
+
+                    if (formatted != input.toString()) {
+                        binding.heightInput.setText(formatted)
+                        binding.heightInput.setSelection(formatted.length)
+                    }
+                }
+            }
+        }
+
+
+
+        binding.weightInput.doOnTextChanged { text, _, _, _ ->
+            text?.let { input ->
+
+                val clean = input.toString().replace("[^0-9]".toRegex(), "")
+
+                if (clean.isNotEmpty()) {
+
+                    val value = clean.toDouble() / 100
+
+                    val formatted = String.format(Locale.US, "%.2f", value)
+
+
+                    if (formatted != input.toString()) {
+                        binding.weightInput.setText(formatted)
+                        binding.weightInput.setSelection(formatted.length)
+                    }
+                }
+            }
+        }
+
 
         binding.backButton.setOnClickListener { finish() }
 
@@ -70,9 +117,14 @@ class FormActivity : AppCompatActivity() {
     }
 
     private fun createUser(): User {
+
         val name = binding.nameInput.text.toString()
         val age = binding.ageInput.text.toString().toIntOrNull() ?: 0
+
+
         val height = binding.heightInput.text.toString().toDoubleOrNull() ?: 0.00
+
+
         val weight = binding.weightInput.text.toString().toDoubleOrNull() ?: 0.00
 
         val selectedGender = binding.genderGroup.checkedRadioButtonId
@@ -123,5 +175,22 @@ class FormActivity : AppCompatActivity() {
 
         binding.sportsLevelSpinner.adapter = adapter
     }
+    fun applyMask(editText: EditText) {
+        var isEditing = false
+
+        editText.doOnTextChanged { text, _, _, _ ->
+            if (isEditing) return@doOnTextChanged
+
+            isEditing = true
+
+            val formatted = formatNumber(text.toString())
+            if (formatted != text.toString()) {
+                editText.setText(formatted)
+                editText.setSelection(formatted.length)
+            }
+
+        }
+    }
+
 
 }

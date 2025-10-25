@@ -13,5 +13,6 @@ data class User(
     val weight: Double = 0.0,
     val height: Double = 0.0,
     val gender: Gender = Gender.NAO_INFORMADO,
-    val sportsLevel: SportsLevel = SportsLevel.SEDENTARIO
+    val sportsLevel: SportsLevel = SportsLevel.SEDENTARIO,
+    var imc : String = "0,00"
 ): Parcelable
