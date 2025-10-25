@@ -1,11 +1,9 @@
 package com.lucas.sigoli.sc3020428.imfitplus
 
-import android.content.Intent
+// External Libraries
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

@@ -1,19 +1,27 @@
 package com.lucas.sigoli.sc3020428.imfitplus
 
-import android.content.Intent
+// External libraries
 import android.os.Bundle
 import android.widget.Toast
 import android.view.MenuItem
+import android.content.Intent
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.lucas.sigoli.sc3020428.imfitplus.constants.Actions
+import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityFormBinding
 
+// Types
 import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
+
+// Constants
 import com.lucas.sigoli.sc3020428.imfitplus.enums.Gender
 import com.lucas.sigoli.sc3020428.imfitplus.enums.SportsLevel
-import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityFormBinding
-import com.lucas.sigoli.sc3020428.imfitplus.utils.showToast
+
+// Services
 import com.lucas.sigoli.sc3020428.imfitplus.validators.UserValidator
+
+// Utils
+import com.lucas.sigoli.sc3020428.imfitplus.utils.showToast
 
 class FormActivity : AppCompatActivity() {
 
@@ -40,6 +48,7 @@ class FormActivity : AppCompatActivity() {
                 finish()
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -54,7 +63,7 @@ class FormActivity : AppCompatActivity() {
             return
         }
 
-        Intent(Actions.CALCULATE_IMC).let{
+        Intent(Actions.CALCULATE_IMC).let {
             it.putExtra("USER", user)
             startActivity(it)
         }
