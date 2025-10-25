@@ -1,5 +1,6 @@
 package com.lucas.sigoli.sc3020428.imfitplus
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import android.view.MenuItem
@@ -52,7 +53,10 @@ class FormActivity : AppCompatActivity() {
             return
         }
 
-
+        Intent(Actions.CALCULATE_IMC).let{
+            it.putExtra("USER", user)
+            startActivity(it)
+        }
     }
 
     private fun createUser(): User {
