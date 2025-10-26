@@ -1,30 +1,27 @@
 package com.lucas.sigoli.sc3020428.imfitplus
 
 // External libraries
+import java.util.Locale
 import android.os.Bundle
 import android.widget.Toast
 import android.view.MenuItem
 import android.content.Intent
 import android.widget.ArrayAdapter
-import android.widget.EditText
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
-import com.lucas.sigoli.sc3020428.imfitplus.constants.Actions
-import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityFormBinding
-
-// Types
-import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
-
-// Constants
-import com.lucas.sigoli.sc3020428.imfitplus.enums.Gender
-import com.lucas.sigoli.sc3020428.imfitplus.enums.SportsLevel
 
 // Services
 import com.lucas.sigoli.sc3020428.imfitplus.validators.UserValidator
 
 // Utils
+import com.lucas.sigoli.sc3020428.imfitplus.enums.Gender
 import com.lucas.sigoli.sc3020428.imfitplus.utils.showToast
-import java.util.Locale
+import com.lucas.sigoli.sc3020428.imfitplus.constants.Actions
+import com.lucas.sigoli.sc3020428.imfitplus.enums.SportsLevel
+
+// Types
+import androidx.appcompat.app.AppCompatActivity
+import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
+import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityFormBinding
 
 class FormActivity : AppCompatActivity() {
 
@@ -71,7 +68,6 @@ class FormActivity : AppCompatActivity() {
                     val value = clean.toDouble() / 100
 
                     val formatted = String.format(Locale.US, "%.2f", value)
-
 
                     if (formatted != input.toString()) {
                         binding.weightInput.setText(formatted)

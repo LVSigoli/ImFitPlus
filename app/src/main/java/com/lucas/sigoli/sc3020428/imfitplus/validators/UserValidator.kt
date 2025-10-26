@@ -1,8 +1,12 @@
 package com.lucas.sigoli.sc3020428.imfitplus.validators
 
-import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
+//Utils
 import com.lucas.sigoli.sc3020428.imfitplus.enums.Gender
 import com.lucas.sigoli.sc3020428.imfitplus.enums.UserErrors
+
+// Types
+import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
+
 
 object UserValidator {
 

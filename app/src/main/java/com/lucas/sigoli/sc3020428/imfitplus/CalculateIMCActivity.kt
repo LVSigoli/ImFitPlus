@@ -1,15 +1,19 @@
 package com.lucas.sigoli.sc3020428.imfitplus
 
 // External libraries
-import android.annotation.SuppressLint
-import android.os.Bundle
-import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityCalculateImcBinding
-import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
-import com.lucas.sigoli.sc3020428.imfitplus.enums.Category
 import java.util.Locale
+import android.os.Bundle
+import android.annotation.SuppressLint
+import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
+
+// Utils
+import com.lucas.sigoli.sc3020428.imfitplus.enums.Category
+
+// Types
+import android.view.MenuItem
+import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
+import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityCalculateImcBinding
 
 
 class CalculateIMCActivity : AppCompatActivity() {

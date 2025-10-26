@@ -1,10 +1,12 @@
 package com.lucas.sigoli.sc3020428.imfitplus.dtos
 
-
+// External Libraries
 import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+// Utils
 import com.lucas.sigoli.sc3020428.imfitplus.enums.Gender
 import com.lucas.sigoli.sc3020428.imfitplus.enums.SportsLevel
-import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class User(
