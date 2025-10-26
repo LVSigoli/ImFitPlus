@@ -3,6 +3,8 @@ package com.lucas.sigoli.sc3020428.imfitplus
 // External libraries
 import java.util.Locale
 import android.os.Bundle
+import android.view.MenuItem
+import android.content.Intent
 import android.annotation.SuppressLint
 import androidx.core.content.ContextCompat
 import androidx.appcompat.app.AppCompatActivity
@@ -11,14 +13,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.lucas.sigoli.sc3020428.imfitplus.enums.Category
 
 // Types
-import android.view.MenuItem
 import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
+import com.lucas.sigoli.sc3020428.imfitplus.constants.Actions
 import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityCalculateImcBinding
-
 
 class CalculateIMCActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCalculateImcBinding
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,13 +42,21 @@ class CalculateIMCActivity : AppCompatActivity() {
         if (user?.imc == "0,00") user = calculateIMC(user)
         else user
 
-
-
         binding.nameContainer.text = "Nome: ${user?.name}"
 
         binding.imcContainer.text = "IMC (Indice de massa corporal): ${user?.imc}"
 
         checkCategory(user?.imc)
+
+        binding.calcButton.setOnClickListener {
+            Intent(Actions.CALCULATE_CALORIES).let {
+                it.putExtra("USER", user)
+
+                startActivity(it)
+            }
+
+        }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -72,26 +80,48 @@ class CalculateIMCActivity : AppCompatActivity() {
     }
 
 
-
     private fun checkCategory(imc: String?) {
         val numericIMC = imc?.toDoubleOrNull() ?: return
         val view = binding.categoryContainer
         when {
             numericIMC < 18.5 -> {
                 view.text = Category.LOW_WEIGHT.message
-                view.setTextColor(ContextCompat.getColor(view.context, R.color.blue))
+                view.setTextColor(
+                    ContextCompat.getColor(
+                        view.context,
+                        R.color.blue
+                    )
+                )
             }
+
             numericIMC < 24.9 -> {
                 view.text = Category.NORMAL_WEIGHT.message
-                view.setTextColor(ContextCompat.getColor(view.context, R.color.green))
+                view.setTextColor(
+                    ContextCompat.getColor(
+                        view.context,
+                        R.color.green
+                    )
+                )
             }
+
             numericIMC < 29.9 -> {
                 view.text = Category.OVERWEIGHT.message
-                view.setTextColor(ContextCompat.getColor(view.context, R.color.orange))
+                view.setTextColor(
+                    ContextCompat.getColor(
+                        view.context,
+                        R.color.orange
+                    )
+                )
             }
+
             else -> {
                 view.text = Category.OBESITY.message
-                view.setTextColor(ContextCompat.getColor(view.context, R.color.red))
+                view.setTextColor(
+                    ContextCompat.getColor(
+                        view.context,
+                        R.color.red
+                    )
+                )
             }
         }
     }
@@ -105,7 +135,6 @@ class CalculateIMCActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayShowHomeEnabled(true)
     }
-
 
 
 }
