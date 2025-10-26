@@ -1,13 +1,12 @@
 package com.lucas.sigoli.sc3020428.imfitplus
 
 // External libraries
-import android.os.Build
 import android.os.Bundle
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityCalculateImcBinding
 import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
-import com.lucas.sigoli.sc3020428.imfitplus.utils.showToast
+import com.lucas.sigoli.sc3020428.imfitplus.enums.Category
 import java.util.Locale
 
 
@@ -33,8 +32,15 @@ class CalculateIMCActivity : AppCompatActivity() {
         else user
 
 
-        val message = user.toString()
-        binding.textViewResult.text = "IMC: ${message}"
+
+        binding.nameContainer.text = "Nome: ${user?.name}"
+
+        binding.imcContainer.text = "IMC (Indice de mass corporal): ${user?.imc}"
+
+        checkCategory(user?.imc)
+
+
+
     }
 
 
@@ -45,4 +51,31 @@ class CalculateIMCActivity : AppCompatActivity() {
 
         return user.copy(imc = formatedImc)
     }
+
+
+
+    private fun checkCategory(imc: String?) {
+        val numericIMC = imc?.toDoubleOrNull() ?: return
+        val view = binding.categoryContainer
+        when {
+            numericIMC < 18.5 -> {
+                view.text = Category.LOW_WEIGHT.message
+                view.setTextColor(ContextCompat.getColor(view.context, R.color.blue))
+            }
+            numericIMC < 24.9 -> {
+                view.text = Category.NORMAL_WEIGHT.message
+                view.setTextColor(ContextCompat.getColor(view.context, R.color.green))
+            }
+            numericIMC < 29.9 -> {
+                view.text = Category.OVERWEIGHT.message
+                view.setTextColor(ContextCompat.getColor(view.context, R.color.orange))
+            }
+            else -> {
+                view.text = Category.OBESITY.message
+                view.setTextColor(ContextCompat.getColor(view.context, R.color.red))
+            }
+        }
+    }
+
+
 }

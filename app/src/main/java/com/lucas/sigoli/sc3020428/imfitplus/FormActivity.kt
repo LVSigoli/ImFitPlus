@@ -64,7 +64,6 @@ class FormActivity : AppCompatActivity() {
 
         binding.weightInput.doOnTextChanged { text, _, _, _ ->
             text?.let { input ->
-
                 val clean = input.toString().replace("[^0-9]".toRegex(), "")
 
                 if (clean.isNotEmpty()) {

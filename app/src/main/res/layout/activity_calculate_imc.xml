@@ -9,11 +9,29 @@
 
 
     <TextView
-        android:id="@+id/text_view_result"
-        android:text="OLÁ MUNDO"
+        android:id="@+id/name_container"
+        android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/imc_container"
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/name_container"
+        tools:ignore="MissingConstraints" />
+
+
+    <TextView
+        android:id="@+id/category_container"
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/imc_container"
+        tools:ignore="MissingConstraints" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
