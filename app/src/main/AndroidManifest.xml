@@ -29,6 +29,13 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".CalculateCaloriesSpentActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="CALCULATE_CALORIES" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
