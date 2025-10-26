@@ -1,7 +1,9 @@
 package com.lucas.sigoli.sc3020428.imfitplus
 
 // External libraries
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityCalculateImcBinding
@@ -20,8 +22,13 @@ class CalculateIMCActivity : AppCompatActivity() {
         binding = ActivityCalculateImcBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
+        setupToolbar(binding)
+
+        binding.backButton.setOnClickListener { finish() }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onStart() {
         super.onStart()
 
@@ -35,12 +42,20 @@ class CalculateIMCActivity : AppCompatActivity() {
 
         binding.nameContainer.text = "Nome: ${user?.name}"
 
-        binding.imcContainer.text = "IMC (Indice de mass corporal): ${user?.imc}"
+        binding.imcContainer.text = "IMC (Indice de massa corporal): ${user?.imc}"
 
         checkCategory(user?.imc)
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
 
-
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
 
@@ -76,6 +91,17 @@ class CalculateIMCActivity : AppCompatActivity() {
             }
         }
     }
+
+    fun setupToolbar(binding: ActivityCalculateImcBinding) {
+        setSupportActionBar(binding.toolbar.toolbar)
+
+        supportActionBar?.title = "Resultado IMC"
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+
 
 
 }

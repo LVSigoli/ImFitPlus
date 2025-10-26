@@ -24,6 +24,8 @@
     <string name="weight_kg_input">Peso em KG</string>
     <string name="back_label">Voltar</string>
     <string name="calculate_imc_label">Calcular IMC</string>
+    <string name="calulate_calories_spent">Calcular Gasto Calórico</string>
+
     <string name="male">Masculino</string>
     <string name="female">Feminino</string>
     <string name="gender_label">Sexo</string>
