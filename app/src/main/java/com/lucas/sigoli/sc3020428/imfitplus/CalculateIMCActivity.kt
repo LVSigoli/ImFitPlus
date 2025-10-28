@@ -45,9 +45,7 @@ class CalculateIMCActivity : AppCompatActivity() {
         binding.nameContainer.text = "Olá, ${user?.name}"
 
         val imcValue = user?.imc?.replace(",", ".")?.toDoubleOrNull() ?: 0.0
-        binding.imcContainer.text = "Seu índice de massa corporal é de %.2f kg/m²".format(imcValue)
-
-
+        binding.imcContainer.text = "Seu índice de massa corporal é de %.2f ".format(imcValue)
 
         checkCategory(user?.imc)
 

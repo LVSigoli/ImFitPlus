@@ -4,6 +4,7 @@ package com.lucas.sigoli.sc3020428.imfitplus
 import android.os.Bundle
 import android.content.Intent
 import android.annotation.SuppressLint
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 
 // Utils
@@ -38,8 +39,6 @@ class CalculateCaloriesSpentActivity : AppCompatActivity() {
         @Suppress("Deprecation")
         var user = intent.getParcelableExtra<User>("USER")
 
-
-
         if (user?.baseCalories == "0,00") user = calculateBaseCalories(user)
         else user
         val baseCalories = user?.baseCalories?.toDoubleOrNull() ?: 0.0
@@ -57,6 +56,17 @@ class CalculateCaloriesSpentActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     fun setupToolbar(binding: ActivityCalculateCaloriesSpentBinding) {
