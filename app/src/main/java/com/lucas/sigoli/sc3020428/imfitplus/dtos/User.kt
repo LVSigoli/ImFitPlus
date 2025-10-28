@@ -17,7 +17,6 @@ data class User(
     val gender: Gender = Gender.NAO_INFORMADO,
     val sportsLevel: SportsLevel = SportsLevel.SEDENTARIO,
     var imc : String = "0,00",
-    var caloriesSpent:String = "0,00",
     val baseCalories: String = "0,00",
     val idealWeight: String = "0,00"
 
