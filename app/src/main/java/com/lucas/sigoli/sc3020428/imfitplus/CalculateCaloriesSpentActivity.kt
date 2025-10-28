@@ -7,6 +7,7 @@ import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityCalculateImcBind
 import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
 import com.lucas.sigoli.sc3020428.imfitplus.enums.Gender
 import com.lucas.sigoli.sc3020428.imfitplus.enums.SportsLevel
+import com.lucas.sigoli.sc3020428.imfitplus.utils.showToast
 
 
 class CalculateCaloriesSpentActivity : AppCompatActivity() {
@@ -27,10 +28,17 @@ class CalculateCaloriesSpentActivity : AppCompatActivity() {
         super.onStart()
 
         @Suppress("Deprecation")
-        var user = intent.getParcelableExtra<User>("User")
+        var user = intent.getParcelableExtra<User>("USER")
+
+        showToast(user.toString(), 1)
 
         if (user?.baseCalories == "0,00") user = calculateBaseCalories(user)
         else user
+
+
+
+        binding.textDisplay.setText("Metabolismo basal ${user?.baseCalories}")
+
     }
 
 
@@ -55,6 +63,7 @@ class CalculateCaloriesSpentActivity : AppCompatActivity() {
             } else {
                 655 + (9.6 * user.weight) + (1.8 * user.height * 100) - (4.7 * user.age)
             }
+
 
         return user.copy(baseCalories = (baseCals * sportsLevel).toString())
     }
