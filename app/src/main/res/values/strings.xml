@@ -32,6 +32,7 @@
     <string name="sport_practice_label">Nível de prática esportiva</string>
     <string name="hello_world">Olá, mundo!</string>
     <string name="calcular_peso_ideal">Calcular Peso ideal</string>
+    <string name="end_activities">Finalizar</string>
 
     <string-array name="sports_levels_labels">
         <item>Sedentário</item>

@@ -1,7 +1,9 @@
 package com.lucas.sigoli.sc3020428.imfitplus
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.lucas.sigoli.sc3020428.imfitplus.constants.Actions
 import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityCalculateCaloriesSpentBinding
 import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityCalculateImcBinding
 import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
@@ -22,6 +24,10 @@ class CalculateCaloriesSpentActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupToolbar(binding)
+
+        binding.backButton.setOnClickListener { finish() }
+
+
     }
 
     override fun onStart() {
@@ -35,9 +41,16 @@ class CalculateCaloriesSpentActivity : AppCompatActivity() {
         if (user?.baseCalories == "0,00") user = calculateBaseCalories(user)
         else user
 
-
-
         binding.textDisplay.setText("Metabolismo basal ${user?.baseCalories}")
+
+        binding.calcButton.setOnClickListener {
+            Intent(Actions.IDEAL_WEIGHT).let{
+                it.putExtra("USERS", user)
+
+                startActivity(it)
+            }
+
+        }
 
     }
 
