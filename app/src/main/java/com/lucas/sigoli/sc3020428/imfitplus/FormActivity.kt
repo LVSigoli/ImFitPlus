@@ -57,6 +57,8 @@ class FormActivity : AppCompatActivity() {
             }
         }
 
+
+
         binding.weightInput.doOnTextChanged { text, _, _, _ ->
             text?.let { input ->
                 val clean = input.toString().replace("[^0-9]".toRegex(), "")
@@ -74,6 +76,7 @@ class FormActivity : AppCompatActivity() {
                 }
             }
         }
+
 
         binding.backButton.setOnClickListener { finish() }
 
@@ -155,11 +158,14 @@ class FormActivity : AppCompatActivity() {
 
     private fun setupSportsLevelSpinner() {
         val adapter = ArrayAdapter.createFromResource(
-            this, R.array.sports_levels_labels, android.R.layout.simple_spinner_item
+            this,
+            R.array.sports_levels_labels,
+            android.R.layout.simple_spinner_item
         )
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         binding.sportsLevelSpinner.adapter = adapter
     }
+
 }

@@ -1,15 +1,16 @@
 package com.lucas.sigoli.sc3020428.imfitplus
 
 // External Libraries
+import kotlin.math.pow
 import android.os.Bundle
-import android.annotation.SuppressLint
 import android.view.MenuItem
+import android.content.Intent
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 
 // Types
 import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
 import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityIdealWeightBinding
-import kotlin.math.pow
 
 class IdealWeightActivity : AppCompatActivity() {
 
@@ -41,11 +42,17 @@ class IdealWeightActivity : AppCompatActivity() {
         differenceWeights = calculateDifferenceWeights(user)
 
 
-        binding.informationDisplay.text = "Peso ideal: %.2f kg".format(user?.idealWeight?.toDouble())
+        binding.informationDisplay.text =
+            "Peso ideal: %.2f kg".format(user?.idealWeight?.toDouble())
 
         binding.differenceDisplay.text = "Diferença: %.2f kg".format(differenceWeights)
 
-        binding.finishButton.setOnClickListener {  }
+        binding.finishButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            finish()
+        }
 
     }
 
@@ -89,7 +96,6 @@ class IdealWeightActivity : AppCompatActivity() {
 
         return weight - idealWeight
     }
-
 
 
 }

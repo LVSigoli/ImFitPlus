@@ -44,7 +44,7 @@ class CalculateIMCActivity : AppCompatActivity() {
 
         binding.nameContainer.text = "Nome: ${user?.name}"
 
-        binding.imcContainer.text = "IMC (Indice de massa corporal): %.2f".format(user?.imc)
+        binding.imcContainer.text = "IMC (Indice de massa corporal): ${user?.imc}"
 
         checkCategory(user?.imc)
 

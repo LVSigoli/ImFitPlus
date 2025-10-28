@@ -43,7 +43,7 @@ class CalculateCaloriesSpentActivity : AppCompatActivity() {
         if (user?.baseCalories == "0,00") user = calculateBaseCalories(user)
         else user
 
-        binding.textDisplay.text = "Metabolismo basal %.2f".format(user?.baseCalories)
+        binding.textDisplay.text = "Metabolismo basal ${user?.baseCalories}"
 
         binding.calcButton.setOnClickListener {
             Intent(Actions.IDEAL_WEIGHT).let {
