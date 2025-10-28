@@ -8,13 +8,27 @@
         android:id="@+id/toolbar"
         layout="@layout/activity_toolbar" />
 
-    <TextView
-        android:id="@+id/text_display"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/card_info"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        android:layout_margin="16dp"
+        android:background="@drawable/card_background"
+        android:elevation="6dp"
+        android:orientation="vertical"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
 
+        <TextView
+            android:id="@+id/text_display"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/button_container"
