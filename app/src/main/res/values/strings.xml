@@ -24,14 +24,14 @@
     <string name="weight_kg_input">Peso em KG</string>
     <string name="back_label">Voltar</string>
     <string name="calculate_imc_label">Calcular IMC</string>
-    <string name="calulate_calories_spent">Calcular Gasto Calórico</string>
+    <string name="calculate_calories_spent">Calcular Gasto Calórico</string>
 
     <string name="male">Masculino</string>
     <string name="female">Feminino</string>
     <string name="gender_label">Sexo</string>
     <string name="sport_practice_label">Nível de prática esportiva</string>
     <string name="hello_world">Olá, mundo!</string>
-    <string name="calcular_peso_ideal">Calcular Peso ideal</string>
+    <string name="calculate_ideal_weight">Calcular Peso ideal</string>
     <string name="end_activities">Finalizar</string>
 
     <string-array name="sports_levels_labels">
