@@ -9,7 +9,6 @@ import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
 
 
 object UserValidator {
-
     fun validate(user: User): String {
         if (user.name.isBlank()) return UserErrors.NAME_EMPTY.message
 

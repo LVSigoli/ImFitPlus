@@ -1,17 +1,19 @@
 package com.lucas.sigoli.sc3020428.imfitplus
 
-import android.annotation.SuppressLint
-import android.content.Intent
+// External libraries
 import android.os.Bundle
+import android.content.Intent
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
-import com.lucas.sigoli.sc3020428.imfitplus.constants.Actions
-import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityCalculateCaloriesSpentBinding
-import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityCalculateImcBinding
-import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
-import com.lucas.sigoli.sc3020428.imfitplus.enums.Gender
-import com.lucas.sigoli.sc3020428.imfitplus.enums.SportsLevel
-import com.lucas.sigoli.sc3020428.imfitplus.utils.showToast
 
+// Utils
+import com.lucas.sigoli.sc3020428.imfitplus.enums.Gender
+import com.lucas.sigoli.sc3020428.imfitplus.constants.Actions
+import com.lucas.sigoli.sc3020428.imfitplus.enums.SportsLevel
+
+// Types
+import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
+import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityCalculateCaloriesSpentBinding
 
 class CalculateCaloriesSpentActivity : AppCompatActivity() {
 
@@ -36,12 +38,12 @@ class CalculateCaloriesSpentActivity : AppCompatActivity() {
         @Suppress("Deprecation")
         var user = intent.getParcelableExtra<User>("USER")
 
-        showToast(user.toString(), 1)
+
 
         if (user?.baseCalories == "0,00") user = calculateBaseCalories(user)
         else user
 
-        binding.textDisplay.text = "Metabolismo basal ${user?.baseCalories}"
+        binding.textDisplay.text = "Metabolismo basal %.2f".format(user?.baseCalories)
 
         binding.calcButton.setOnClickListener {
             Intent(Actions.IDEAL_WEIGHT).let {

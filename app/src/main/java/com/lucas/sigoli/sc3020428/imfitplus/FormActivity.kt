@@ -57,8 +57,6 @@ class FormActivity : AppCompatActivity() {
             }
         }
 
-
-
         binding.weightInput.doOnTextChanged { text, _, _, _ ->
             text?.let { input ->
                 val clean = input.toString().replace("[^0-9]".toRegex(), "")
@@ -76,7 +74,6 @@ class FormActivity : AppCompatActivity() {
                 }
             }
         }
-
 
         binding.backButton.setOnClickListener { finish() }
 
@@ -111,19 +108,17 @@ class FormActivity : AppCompatActivity() {
     }
 
     private fun createUser(): User {
-
         val name = binding.nameInput.text.toString()
+
         val age = binding.ageInput.text.toString().toIntOrNull() ?: 0
 
-
         val height = binding.heightInput.text.toString().toDoubleOrNull() ?: 0.00
-
 
         val weight = binding.weightInput.text.toString().toDoubleOrNull() ?: 0.00
 
         val selectedGender = binding.genderGroup.checkedRadioButtonId
-        val selectedLevel = binding.sportsLevelSpinner.selectedItem.toString()
 
+        val selectedLevel = binding.sportsLevelSpinner.selectedItem.toString()
 
         val sportsLevel = when (selectedLevel) {
             "Leve" -> SportsLevel.LEVE
@@ -160,14 +155,11 @@ class FormActivity : AppCompatActivity() {
 
     private fun setupSportsLevelSpinner() {
         val adapter = ArrayAdapter.createFromResource(
-            this,
-            R.array.sports_levels_labels,
-            android.R.layout.simple_spinner_item
+            this, R.array.sports_levels_labels, android.R.layout.simple_spinner_item
         )
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         binding.sportsLevelSpinner.adapter = adapter
     }
-
 }

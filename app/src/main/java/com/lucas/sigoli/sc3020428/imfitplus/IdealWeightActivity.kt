@@ -45,6 +45,8 @@ class IdealWeightActivity : AppCompatActivity() {
 
         binding.differenceDisplay.text = "Diferença: %.2f kg".format(differenceWeights)
 
+        binding.finishButton.setOnClickListener {  }
+
     }
 
     fun setupToolbar(binding: ActivityIdealWeightBinding) {
