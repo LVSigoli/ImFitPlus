@@ -1,5 +1,6 @@
 package com.lucas.sigoli.sc3020428.imfitplus
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -26,10 +27,9 @@ class CalculateCaloriesSpentActivity : AppCompatActivity() {
         setupToolbar(binding)
 
         binding.backButton.setOnClickListener { finish() }
-
-
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onStart() {
         super.onStart()
 
@@ -41,10 +41,10 @@ class CalculateCaloriesSpentActivity : AppCompatActivity() {
         if (user?.baseCalories == "0,00") user = calculateBaseCalories(user)
         else user
 
-        binding.textDisplay.setText("Metabolismo basal ${user?.baseCalories}")
+        binding.textDisplay.text = "Metabolismo basal ${user?.baseCalories}"
 
         binding.calcButton.setOnClickListener {
-            Intent(Actions.IDEAL_WEIGHT).let{
+            Intent(Actions.IDEAL_WEIGHT).let {
                 it.putExtra("USERS", user)
 
                 startActivity(it)
@@ -53,7 +53,6 @@ class CalculateCaloriesSpentActivity : AppCompatActivity() {
         }
 
     }
-
 
     fun setupToolbar(binding: ActivityCalculateCaloriesSpentBinding) {
         setSupportActionBar(binding.toolbar.toolbar)
