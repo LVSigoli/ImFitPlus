@@ -41,11 +41,24 @@ class IdealWeightActivity : AppCompatActivity() {
 
         differenceWeights = calculateDifferenceWeights(user)
 
+        binding.currentWeight.text = "Seu peso Atual é %.2f kg".format(user?.weight?.toDouble())
 
         binding.informationDisplay.text =
             "Peso ideal: %.2f kg".format(user?.idealWeight?.toDouble())
 
-        binding.differenceDisplay.text = "Diferença: %.2f kg".format(differenceWeights)
+        val message = when {
+            differenceWeights > 0 -> "Você está %.2f kg acima do seu peso ideal. Que tal ajustar a alimentação e aumentar a atividade física?".format(
+                differenceWeights
+            )
+
+            differenceWeights < 0 -> "Você está %.2f kg abaixo do peso ideal. Considere aumentar a ingestão calórica para equilibrar seu peso.".format(
+                differenceWeights
+            )
+
+            else -> "Parabéns! Você está no seu peso ideal 🎉"
+        }
+
+        binding.differenceDisplay.text = message
 
         binding.finishButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)

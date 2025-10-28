@@ -31,7 +31,7 @@ class CalculateCaloriesSpentActivity : AppCompatActivity() {
         binding.backButton.setOnClickListener { finish() }
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "DefaultLocale")
     override fun onStart() {
         super.onStart()
 
@@ -42,8 +42,11 @@ class CalculateCaloriesSpentActivity : AppCompatActivity() {
 
         if (user?.baseCalories == "0,00") user = calculateBaseCalories(user)
         else user
+        val baseCalories = user?.baseCalories?.toDoubleOrNull() ?: 0.0
 
-        binding.textDisplay.text = "Metabolismo basal ${user?.baseCalories}"
+        binding.textDisplay.text = "${user?.name} seu gasto calórico diário é "
+
+        binding.caloriesDisplay.text = String.format("%.2f kcal/dia", baseCalories)
 
         binding.calcButton.setOnClickListener {
             Intent(Actions.IDEAL_WEIGHT).let {
