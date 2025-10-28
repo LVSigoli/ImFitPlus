@@ -45,7 +45,7 @@ class CalculateCaloriesSpentActivity : AppCompatActivity() {
 
         binding.calcButton.setOnClickListener {
             Intent(Actions.IDEAL_WEIGHT).let {
-                it.putExtra("USERS", user)
+                it.putExtra("USER", user)
 
                 startActivity(it)
             }
