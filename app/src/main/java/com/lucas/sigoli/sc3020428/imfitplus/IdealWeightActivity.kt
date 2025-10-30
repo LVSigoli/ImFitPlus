@@ -90,7 +90,6 @@ class IdealWeightActivity : AppCompatActivity() {
         }
     }
 
-
     fun calculateIdealWeight(user: User?): User? {
         if (user == null) return null
 
@@ -98,7 +97,6 @@ class IdealWeightActivity : AppCompatActivity() {
 
         return user.copy(idealWeight = "%.2f".format(idealWeight))
     }
-
 
     fun calculateDifferenceWeights(user: User?): Double {
         val weight = user?.weight ?: 0.0
@@ -109,6 +107,5 @@ class IdealWeightActivity : AppCompatActivity() {
 
         return weight - idealWeight
     }
-
 
 }

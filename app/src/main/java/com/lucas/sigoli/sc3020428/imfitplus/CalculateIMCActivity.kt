@@ -71,7 +71,6 @@ class CalculateIMCActivity : AppCompatActivity() {
         }
     }
 
-
     private fun calculateIMC(user: User): User {
         val imc = user.weight / (user.height * user.height)
 
@@ -79,7 +78,6 @@ class CalculateIMCActivity : AppCompatActivity() {
 
         return user.copy(imc = formatedImc)
     }
-
 
     private fun checkCategory(imc: String?) {
         val numericIMC = imc?.toDoubleOrNull() ?: return
@@ -136,6 +134,5 @@ class CalculateIMCActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayShowHomeEnabled(true)
     }
-
 
 }

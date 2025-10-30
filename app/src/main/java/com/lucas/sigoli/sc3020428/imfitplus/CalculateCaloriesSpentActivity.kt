@@ -41,6 +41,7 @@ class CalculateCaloriesSpentActivity : AppCompatActivity() {
 
         if (user?.baseCalories == "0,00") user = calculateBaseCalories(user)
         else user
+
         val baseCalories = user?.baseCalories?.toDoubleOrNull() ?: 0.0
 
         binding.textDisplay.text = "${user?.name} seu gasto calórico diário é "
@@ -91,7 +92,6 @@ class CalculateCaloriesSpentActivity : AppCompatActivity() {
                 655 + (9.6 * user.weight) + (1.8 * user.height * 100) - (4.7 * user.age)
             }
 
-
         return user.copy(baseCalories = (baseCals * sportsLevel).toString())
     }
 
@@ -103,6 +103,4 @@ class CalculateCaloriesSpentActivity : AppCompatActivity() {
             SportsLevel.SEDENTARIO -> 1.2
         }
     }
-
-
 }

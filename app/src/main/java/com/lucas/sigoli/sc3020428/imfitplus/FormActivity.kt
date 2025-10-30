@@ -31,6 +31,7 @@ class FormActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityFormBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
 
         setupToolbar(binding)
@@ -47,7 +48,6 @@ class FormActivity : AppCompatActivity() {
                     val value = clean.toDouble() / 100
 
                     val formatted = String.format(Locale.US, "%.2f", value)
-
 
                     if (formatted != input.toString()) {
                         binding.heightInput.setText(formatted)
@@ -76,7 +76,6 @@ class FormActivity : AppCompatActivity() {
                 }
             }
         }
-
 
         binding.backButton.setOnClickListener { finish() }
 
