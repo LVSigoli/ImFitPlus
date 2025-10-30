@@ -47,11 +47,11 @@ class IdealWeightActivity : AppCompatActivity() {
             "Peso ideal: %.2f kg".format(user?.idealWeight?.toDouble())
 
         val message = when {
-            differenceWeights > 0 -> "Você está %.2f kg acima do seu peso ideal. Que tal ajustar a alimentação e aumentar a atividade física?".format(
+            differenceWeights > 0 -> "Você está %.2f kg acima do seu peso ideal.".format(
                 differenceWeights
             )
 
-            differenceWeights < 0 -> "Você está %.2f kg abaixo do peso ideal. Considere aumentar a ingestão calórica para equilibrar seu peso.".format(
+            differenceWeights < 0 -> "Você está %.2f kg abaixo do peso ideal.".format(
                 differenceWeights
             )
 
