@@ -100,6 +100,7 @@ class FormActivity : AppCompatActivity() {
 
         if (!message.isEmpty()) {
             showToast(message, Toast.LENGTH_LONG)
+
             return
         }
 
@@ -122,6 +123,8 @@ class FormActivity : AppCompatActivity() {
 
         val selectedLevel = binding.sportsLevelSpinner.selectedItem.toString()
 
+        val imc = calculateIMC(weight, height)
+
         val sportsLevel = when (selectedLevel) {
             "Leve" -> SportsLevel.LEVE
             "Moderado" -> SportsLevel.MODERADO
@@ -141,9 +144,20 @@ class FormActivity : AppCompatActivity() {
             gender = gender,
             weight = weight,
             height = height,
-            sportsLevel = sportsLevel
+            sportsLevel = sportsLevel,
+            imc = imc
         )
     }
+
+    private fun calculateIMC(weight: Double, height: Double): String {
+        val imc = weight / (height * height)
+
+        val formatedImc = String.format(Locale.US, "%.2f", imc)
+
+        return formatedImc
+
+    }
+
 
     fun setupToolbar(binding: ActivityFormBinding) {
         setSupportActionBar(binding.toolbar.toolbar)

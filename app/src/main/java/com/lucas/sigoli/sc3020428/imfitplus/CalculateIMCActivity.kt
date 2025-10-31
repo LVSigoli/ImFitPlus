@@ -1,7 +1,6 @@
 package com.lucas.sigoli.sc3020428.imfitplus
 
 // External libraries
-import java.util.Locale
 import android.os.Bundle
 import android.view.MenuItem
 import android.content.Intent
@@ -39,12 +38,10 @@ class CalculateIMCActivity : AppCompatActivity() {
         @Suppress("DEPRECATION")
         var user: User? = intent.getParcelableExtra<User>("USER")
 
-        if (user?.imc == "0,00") user = calculateIMC(user)
-        else user
-
         binding.nameContainer.text = "Olá, ${user?.name}"
 
         val imcValue = user?.imc?.replace(",", ".")?.toDoubleOrNull() ?: 0.0
+
         binding.imcContainer.text = "Seu índice de massa corporal é de %.2f ".format(imcValue)
 
         checkCategory(user?.imc)
@@ -69,14 +66,6 @@ class CalculateIMCActivity : AppCompatActivity() {
 
             else -> super.onOptionsItemSelected(item)
         }
-    }
-
-    private fun calculateIMC(user: User): User {
-        val imc = user.weight / (user.height * user.height)
-
-        val formatedImc = String.format(Locale.US, "%.2f", imc)
-
-        return user.copy(imc = formatedImc)
     }
 
     private fun checkCategory(imc: String?) {
