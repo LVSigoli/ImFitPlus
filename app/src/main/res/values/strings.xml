@@ -41,6 +41,7 @@
     <string name="normal_weight_category">18.5 – 24.9 → Normal</string>
     <string name="over_weight_category">25 – 29.9 → Sobrepeso</string>
     <string name="obesity">≥ 30 → Obesidade</string>
+    <string name="overviw">Relatório</string>
 
     <string-array name="sports_levels_labels">
         <item>Sedentário</item>

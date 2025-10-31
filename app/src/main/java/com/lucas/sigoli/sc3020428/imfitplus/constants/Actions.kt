@@ -6,4 +6,6 @@ object Actions {
     const val CALCULATE_CALORIES = "CALCULATE_CALORIES"
 
     const val IDEAL_WEIGHT = "IDEAL_WEIGHT"
+
+    const val OVERVIEW = "OVERVIEW"
 }

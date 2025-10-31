@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.content.Intent
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
+import com.lucas.sigoli.sc3020428.imfitplus.constants.Actions
 
 // Types
 import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
@@ -61,10 +62,11 @@ class IdealWeightActivity : AppCompatActivity() {
         binding.differenceDisplay.text = message
 
         binding.finishButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
-            finish()
+            Intent(Actions.OVERVIEW).let{
+                it.putExtra("USER", user)
+
+                startActivity(it)
+            }
         }
 
     }

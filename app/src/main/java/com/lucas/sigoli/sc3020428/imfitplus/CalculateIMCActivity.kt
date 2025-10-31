@@ -5,9 +5,6 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.content.Intent
 import android.annotation.SuppressLint
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.ForegroundColorSpan
 import androidx.core.content.ContextCompat
 import androidx.appcompat.app.AppCompatActivity
 
@@ -47,7 +44,7 @@ class CalculateIMCActivity : AppCompatActivity() {
 
         binding.imcContainer.text = "Seu índice de massa corporal é de %.2f ".format(imcValue)
 
-        checkCategory(user?.imc)
+        user = checkCategory(user)
 
         binding.calcButton.setOnClickListener {
             Intent(Actions.CALCULATE_CALORIES).let {
@@ -57,8 +54,6 @@ class CalculateIMCActivity : AppCompatActivity() {
             }
 
         }
-
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -72,12 +67,15 @@ class CalculateIMCActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkCategory(imc: String?) {
-        val numericIMC = imc?.toDoubleOrNull() ?: return
+    private fun checkCategory(user:User?): User? {
+        val numericIMC = user?.imc?.toDoubleOrNull() ?: return user
         val view = binding.categoryContainer
+
+        var category: String = ""
         when {
             numericIMC < 18.5 -> {
                 view.text = Category.LOW_WEIGHT.message
+                category = Category.LOW_WEIGHT.message
                 view.setTextColor(
                     ContextCompat.getColor(
                         view.context,
@@ -88,6 +86,7 @@ class CalculateIMCActivity : AppCompatActivity() {
 
             numericIMC < 24.9 -> {
                 view.text = Category.NORMAL_WEIGHT.message
+                category = Category.NORMAL_WEIGHT.message
                 view.setTextColor(
                     ContextCompat.getColor(
                         view.context,
@@ -98,6 +97,7 @@ class CalculateIMCActivity : AppCompatActivity() {
 
             numericIMC < 29.9 -> {
                 view.text = Category.OVERWEIGHT.message
+                category = Category.OVERWEIGHT.message
                 view.setTextColor(
                     ContextCompat.getColor(
                         view.context,
@@ -108,6 +108,7 @@ class CalculateIMCActivity : AppCompatActivity() {
 
             else -> {
                 view.text = Category.OBESITY.message
+                category = Category.OBESITY.message
                 view.setTextColor(
                     ContextCompat.getColor(
                         view.context,
@@ -116,6 +117,8 @@ class CalculateIMCActivity : AppCompatActivity() {
                 )
             }
         }
+
+        return user.copy(imcCategory = category)
     }
 
     fun setupToolbar(binding: ActivityCalculateImcBinding) {

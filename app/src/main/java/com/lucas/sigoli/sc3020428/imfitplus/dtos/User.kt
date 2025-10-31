@@ -24,7 +24,10 @@ data class User(
 
     var imc : String = "0,00",
 
+    var imcCategory: String = "",
+
     val baseCalories: String = "0,00",
 
     val idealWeight: String = "0,00"
+
 ): Parcelable
