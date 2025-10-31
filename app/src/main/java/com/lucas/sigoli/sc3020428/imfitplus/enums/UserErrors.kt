@@ -9,5 +9,5 @@ enum class UserErrors(val message: String) {
 
     WEIGHT_INVALID("O Peso deve ser preenchido e maior que zero"),
 
-    GENDER_INVALID("O Sexo deve ser informado")
+    GENDER_INVALID("O Gênero deve ser informado")
 }

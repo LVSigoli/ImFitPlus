@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.content.Intent
 import android.annotation.SuppressLint
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import androidx.core.content.ContextCompat
 import androidx.appcompat.app.AppCompatActivity
 
@@ -54,6 +57,7 @@ class CalculateIMCActivity : AppCompatActivity() {
             }
 
         }
+
 
     }
 
@@ -123,5 +127,4 @@ class CalculateIMCActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayShowHomeEnabled(true)
     }
-
 }

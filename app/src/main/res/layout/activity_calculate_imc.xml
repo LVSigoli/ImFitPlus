@@ -60,6 +60,66 @@
             tools:ignore="MissingConstraints" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/categories_display"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/card_background"
+        android:elevation="6dp"
+        android:orientation="vertical"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@id/button_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <TextView
+            android:id="@+id/category_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:text="Categoria IMC:"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/low_weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/low_weight_category"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/normal_weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/normal_weight_category"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/over_weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/over_weight_category"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/obesity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/obesity"
+            android:textSize="14sp" />
+    </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/button_container"
