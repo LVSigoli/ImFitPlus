@@ -24,7 +24,9 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(
                 imc TEXT NOT NULL,
                 imcCategory TEXT NOT NULL,
                 baseCalories TEXT NOT NULL,
-                idealWeight TEXT NOT NULL
+                idealWeight TEXT NOT NULL, 
+                createdAt TEXT DEFAULT CURRENT_TIMESTAMP
+                
             );
             """.trimIndent()
         )
