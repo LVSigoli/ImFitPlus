@@ -8,4 +8,6 @@ object Actions {
     const val IDEAL_WEIGHT = "IDEAL_WEIGHT"
 
     const val OVERVIEW = "OVERVIEW"
+
+    const val HISTORY = "HISTORY"
 }

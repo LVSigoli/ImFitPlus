@@ -1,10 +1,12 @@
 package com.lucas.sigoli.sc3020428.imfitplus
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.lucas.sigoli.sc3020428.imfitplus.constants.Actions
 import com.lucas.sigoli.sc3020428.imfitplus.database.repositories.UserRepository
 import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityCalculateImcBinding
 import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityOverviewBinding
@@ -16,7 +18,9 @@ class OverviewActivity: AppCompatActivity() {
     private lateinit var binding: ActivityOverviewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState, )
+        super.onCreate(savedInstanceState)
+
+        @Suppress("deprecation")
         val user: User? = intent.getParcelableExtra<User>("USER")
 
         userRepository = UserRepository(this)
@@ -42,6 +46,14 @@ class OverviewActivity: AppCompatActivity() {
 
         binding.waterConsumption.text = "Quantidade recomentada de Agua por dia: %.2f L".format(idealWaterConsumption)
 
+
+        binding.seeHistory.setOnClickListener {
+            Intent(Actions.HISTORY).let{
+
+            it.putExtra("USER", user)
+
+            startActivity(it)
+        } }
 
     }
 

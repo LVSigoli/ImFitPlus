@@ -42,6 +42,7 @@
     <string name="over_weight_category">25 – 29.9 → Sobrepeso</string>
     <string name="obesity">≥ 30 → Obesidade</string>
     <string name="overviw">Relatório</string>
+    <string name="see_history">Ver histórico</string>
 
     <string-array name="sports_levels_labels">
         <item>Sedentário</item>
