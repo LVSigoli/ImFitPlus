@@ -2,12 +2,14 @@ package com.lucas.sigoli.sc3020428.imfitplus
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.lucas.sigoli.sc3020428.imfitplus.database.repositories.UserRepository
 import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityCalculateImcBinding
 import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityOverviewBinding
 import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
+import com.lucas.sigoli.sc3020428.imfitplus.utils.showToast
 
 class OverviewActivity: AppCompatActivity() {
     private lateinit var userRepository: UserRepository
@@ -16,6 +18,8 @@ class OverviewActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState, )
         val user: User? = intent.getParcelableExtra<User>("USER")
+
+        userRepository = UserRepository(this)
         val idealWaterConsumption = calculateIdealWaterAmount(user?.weight)
 
         saveUser(user, idealWaterConsumption)
@@ -54,7 +58,9 @@ class OverviewActivity: AppCompatActivity() {
     fun saveUser(user:User?, waterConsumption: Double?){
         if (user == null) return
 
-        val updatedUser = user.copy(waterConsumption = waterConsumption.toString())
+        val updatedUser = user.copy(
+            waterConsumption = "%.2f".format(waterConsumption ?: 0.0)
+        )
 
         userRepository.insert(updatedUser)
     }

@@ -33,6 +33,7 @@ class UserRepository(context: Context) {
             put("imcCategory", user.imcCategory)
             put("baseCalories", user.baseCalories)
             put("idealWeight", user.idealWeight)
+            put("waterConsumption", user.waterConsumption)
             put("createdAt", System.currentTimeMillis())
         }
 
