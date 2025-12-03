@@ -10,6 +10,7 @@ import com.lucas.sigoli.sc3020428.imfitplus.database.db.DatabaseHelper
 
 // Types
 import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
+import com.lucas.sigoli.sc3020428.imfitplus.dtos.UserHistory
 import com.lucas.sigoli.sc3020428.imfitplus.enums.Gender
 import com.lucas.sigoli.sc3020428.imfitplus.enums.SportsLevel
 
@@ -38,24 +39,26 @@ class UserRepository(context: Context) {
         return db.insert("user", null, values)
     }
 
-    fun getUsers(name: String): ArrayList<User> {
+
+    fun getUserHistory(name: String): ArrayList<UserHistory> {
         val db = dbHelper.readableDatabase
         val cursor = db.rawQuery(
-            "SELECT * FROM user WHERE name = ?",
+            "SELECT * FROM user WHERE name = ? ORDER BY createdAt DESC",
             arrayOf(name)
         )
 
-        val users = ArrayList<User>()
+        val list = ArrayList<UserHistory>()
 
         if (cursor.moveToFirst()) {
             do {
-                users.add(cursorToUser(cursor))
+                list.add(cursorToHistory(cursor))
             } while (cursor.moveToNext())
         }
 
         cursor.close()
-        return users
+        return list
     }
+
 
     fun updateUser(user: User, id: Int): Int {
         val db = dbHelper.writableDatabase
@@ -71,6 +74,7 @@ class UserRepository(context: Context) {
             put("imcCategory", user.imcCategory)
             put("baseCalories", user.baseCalories)
             put("idealWeight", user.idealWeight)
+            put("waterConsumption", user.waterConsumption)
         }
 
         return db.update("user", values, "id = ?", arrayOf(id.toString()))
@@ -81,7 +85,7 @@ class UserRepository(context: Context) {
         return db.delete("user", "id = ?", arrayOf(id.toString()))
     }
 
-    // Helpers
+    // HELPERS
     private fun cursorToUser(cursor: Cursor): User {
         return User(
             age = cursor.getInt(cursor.getColumnIndexOrThrow("age")),
@@ -93,8 +97,18 @@ class UserRepository(context: Context) {
             imc = cursor.getString(cursor.getColumnIndexOrThrow("imc")),
             imcCategory = cursor.getString(cursor.getColumnIndexOrThrow("imcCategory")),
             baseCalories = cursor.getString(cursor.getColumnIndexOrThrow("baseCalories")),
-            idealWeight = cursor.getString(cursor.getColumnIndexOrThrow("idealWeight"))
+            idealWeight = cursor.getString(cursor.getColumnIndexOrThrow("idealWeight")),
+            waterConsumption = cursor.getString(cursor.getColumnIndexOrThrow("waterConsumption"))
         )
     }
 
+    private fun cursorToHistory(cursor: Cursor): UserHistory {
+        val user = cursorToUser(cursor)
+
+        return UserHistory(
+            id = cursor.getInt(cursor.getColumnIndexOrThrow("id")),
+            user = user,
+            createdAt = cursor.getLong(cursor.getColumnIndexOrThrow("createdAt"))
+        )
+    }
 }

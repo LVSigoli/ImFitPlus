@@ -25,6 +25,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(
                 imcCategory TEXT NOT NULL,
                 baseCalories TEXT NOT NULL,
                 idealWeight TEXT NOT NULL, 
+                waterConsumption TEXT NOT NULL, 
                 createdAt TEXT DEFAULT CURRENT_TIMESTAMP
                 
             );
