@@ -4,18 +4,21 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.lucas.sigoli.sc3020428.imfitplus.database.repositories.UserRepository
 import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityCalculateImcBinding
 import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityOverviewBinding
 import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
 
 class OverviewActivity: AppCompatActivity() {
+    private lateinit var userRepository: UserRepository
     private lateinit var binding: ActivityOverviewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState, )
-        var user: User? = intent.getParcelableExtra<User>("USER")
+        val user: User? = intent.getParcelableExtra<User>("USER")
+        val idealWaterConsumption = calculateIdealWaterAmount(user?.weight)
 
-
+        saveUser(user, idealWaterConsumption)
         binding = ActivityOverviewBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
@@ -33,9 +36,10 @@ class OverviewActivity: AppCompatActivity() {
 
         binding.caloriesContainer.text = "Gasto calórico diário: ${user?.baseCalories}"
 
-        binding.waterConsumption.text = "Quantidade recomentada de Agua por dia: %.2f L".format(calculateIdealWaterAmount(user?.weight))
-    }
+        binding.waterConsumption.text = "Quantidade recomentada de Agua por dia: %.2f L".format(idealWaterConsumption)
 
+
+    }
 
     fun setupToolbar(binding: ActivityOverviewBinding) {
         setSupportActionBar(binding.toolbar.toolbar)
@@ -45,6 +49,14 @@ class OverviewActivity: AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+
+    fun saveUser(user:User?, waterConsumption: Double?){
+        if (user == null) return
+
+        val updatedUser = user.copy(waterConsumption = waterConsumption.toString())
+
+        userRepository.insert(updatedUser)
     }
 
     fun calculateIdealWaterAmount(weight: Double?): Double?{
