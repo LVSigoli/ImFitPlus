@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.lucas.sigoli.sc3020428.imfitplus.adapters.UserHistoryAdapter
 import com.lucas.sigoli.sc3020428.imfitplus.database.repositories.UserRepository
 import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityHistoryBinding
 import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
@@ -39,7 +41,10 @@ class HistoryActivity: AppCompatActivity() {
             userHistory = userRepository.getUserHistory(user.name)
 
 
-            binding.test.text = "Histórico de ${user.name} (${userHistory.size} registros)"
+            binding.recyclerHistory.apply {
+                layoutManager = LinearLayoutManager(this@HistoryActivity)
+                adapter = UserHistoryAdapter(userHistory)
+            }
         }
 
     }
