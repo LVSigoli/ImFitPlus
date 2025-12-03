@@ -35,6 +35,10 @@ class HistoryActivity: AppCompatActivity() {
         setSupportActionBar(binding.toolbar.toolbar)
 
         supportActionBar?.title = "Histórico"
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
