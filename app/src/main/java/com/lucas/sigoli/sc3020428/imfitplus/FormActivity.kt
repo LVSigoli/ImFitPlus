@@ -11,6 +11,7 @@ import androidx.core.widget.doOnTextChanged
 
 // Services
 import com.lucas.sigoli.sc3020428.imfitplus.validators.UserValidator
+import com.lucas.sigoli.sc3020428.imfitplus.database.repositories.UserRepository
 
 // Utils
 import com.lucas.sigoli.sc3020428.imfitplus.enums.Gender
@@ -20,7 +21,6 @@ import com.lucas.sigoli.sc3020428.imfitplus.enums.SportsLevel
 
 // Types
 import androidx.appcompat.app.AppCompatActivity
-import com.lucas.sigoli.sc3020428.imfitplus.database.repositories.UserRepository
 import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
 import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityFormBinding
 

@@ -43,6 +43,7 @@
     <string name="obesity">≥ 30 → Obesidade</string>
     <string name="overviw">Relatório</string>
     <string name="see_history">Ver histórico</string>
+    <string name="finish">Finalizar</string>
 
     <string-array name="sports_levels_labels">
         <item>Sedentário</item>

@@ -1,17 +1,21 @@
 package com.lucas.sigoli.sc3020428.imfitplus
 
-import android.content.Intent
+// External Libraries
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.util.Log
+import android.content.Intent
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+
+// Utils
 import com.lucas.sigoli.sc3020428.imfitplus.constants.Actions
+
+// Services
 import com.lucas.sigoli.sc3020428.imfitplus.database.repositories.UserRepository
-import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityCalculateImcBinding
-import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityOverviewBinding
+
+// Types
 import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
-import com.lucas.sigoli.sc3020428.imfitplus.utils.showToast
+import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityOverviewBinding
+
 
 class OverviewActivity: AppCompatActivity() {
     private lateinit var userRepository: UserRepository
@@ -47,14 +51,16 @@ class OverviewActivity: AppCompatActivity() {
         binding.waterConsumption.text = "Quantidade recomentada de Agua por dia: %.2f L".format(idealWaterConsumption)
 
 
+        binding.backButton.setOnClickListener { finish() }
+
         binding.seeHistory.setOnClickListener {
             Intent(Actions.HISTORY).let{
 
             it.putExtra("USER", user)
 
             startActivity(it)
-        } }
-
+            }
+        }
     }
 
     fun setupToolbar(binding: ActivityOverviewBinding) {
