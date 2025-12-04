@@ -20,23 +20,38 @@ import com.lucas.sigoli.sc3020428.imfitplus.enums.SportsLevel
 
 // Types
 import androidx.appcompat.app.AppCompatActivity
+import com.lucas.sigoli.sc3020428.imfitplus.database.repositories.UserRepository
 import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
 import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityFormBinding
 
 class FormActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFormBinding
+    private lateinit var userRepository: UserRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityFormBinding.inflate(layoutInflater)
 
+        userRepository = UserRepository(this)
+
         setContentView(binding.root)
 
         setupToolbar(binding)
 
         setupSportsLevelSpinner()
+
+
+        binding.nameInput.doOnTextChanged { text, _, _, _ ->
+            val name = text?.toString() ?: ""
+            if (name.length < 3) return@doOnTextChanged
+
+            val latest = userRepository.getLatestRegister(name)
+
+            if (latest != null) fillUserFields(latest)
+
+        }
 
         binding.heightInput.doOnTextChanged { text, _, _, _ ->
             text?.let { input ->
@@ -108,6 +123,17 @@ class FormActivity : AppCompatActivity() {
         }
     }
 
+    private fun fillUserFields(user: User) {
+        binding.heightInput.setText(user.height.toString())
+
+        when (user.gender) {
+            Gender.MASCULINO -> binding.genderGroup.check(R.id.gender_male)
+            Gender.FEMININO -> binding.genderGroup.check(R.id.gender_female)
+            else -> binding.genderGroup.clearCheck()
+        }
+
+        binding.sportsLevelSpinner.setSelection(user.sportsLevel.ordinal)
+    }
     private fun createUser(): User {
         val name = binding.nameInput.text.toString()
 
