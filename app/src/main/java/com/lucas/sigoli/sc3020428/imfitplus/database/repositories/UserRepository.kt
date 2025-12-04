@@ -60,6 +60,30 @@ class UserRepository(context: Context) {
         return list
     }
 
+    fun getLatestRegister(name: String): User?{
+        val db = dbHelper.readableDatabase
+
+        val cursor = db.rawQuery(
+            """
+            SELECT * FROM user 
+            WHERE name = ? 
+            ORDER BY createdAt DESC 
+            LIMIT 1
+        """.trimIndent(),
+            arrayOf(name)
+        )
+
+        if (!cursor.moveToFirst()) {
+            cursor.close()
+            return null
+        }
+
+        val user = cursorToUser(cursor)
+
+        cursor.close()
+        return user
+    }
+
 
     fun updateUser(user: User, id: Int): Int {
         val db = dbHelper.writableDatabase
