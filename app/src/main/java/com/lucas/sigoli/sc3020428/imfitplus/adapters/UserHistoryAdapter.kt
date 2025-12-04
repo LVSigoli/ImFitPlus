@@ -32,15 +32,19 @@ class UserHistoryAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = userHistory[position]
+
         val user = item.user
 
         holder.name.text = "Usuario: ${user.name}"
 
         holder.imc.text = "IMC: ${user.imc}"
+
         holder.category.text = "Classificação: ${user.imcCategory}"
 
         holder.extra1.text = "Peso: ${user.weight} kg • Altura: ${user.height} m"
+
         holder.calories.text = "Gasto calórico: ${user.baseCalories} kcal"
+
         holder.water.text = "Indicação de consumo diario de água: ${user.waterConsumption} L"
 
         holder.createdAt.text = "Criado em: ${formatDate(item.createdAt)}"
@@ -48,6 +52,7 @@ class UserHistoryAdapter(
 
     private fun formatDate(timestamp: Long): String {
         val sdf = java.text.SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+
         return sdf.format(Date(timestamp))
     }
 
