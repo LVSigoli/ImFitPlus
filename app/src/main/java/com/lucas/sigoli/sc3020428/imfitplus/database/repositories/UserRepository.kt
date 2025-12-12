@@ -84,32 +84,6 @@ class UserRepository(context: Context) {
         return user
     }
 
-
-    fun updateUser(user: User, id: Int): Int {
-        val db = dbHelper.writableDatabase
-
-        val values = ContentValues().apply {
-            put("age", user.age)
-            put("name", user.name)
-            put("weight", user.weight)
-            put("height", user.height)
-            put("gender", user.gender.name)
-            put("sportsLevel", user.sportsLevel.name)
-            put("imc", user.imc)
-            put("imcCategory", user.imcCategory)
-            put("baseCalories", user.baseCalories)
-            put("idealWeight", user.idealWeight)
-            put("waterConsumption", user.waterConsumption)
-        }
-
-        return db.update("user", values, "id = ?", arrayOf(id.toString()))
-    }
-
-    fun deleteUser(id: Int): Int {
-        val db = dbHelper.writableDatabase
-        return db.delete("user", "id = ?", arrayOf(id.toString()))
-    }
-
     // HELPERS
     private fun cursorToUser(cursor: Cursor): User {
         return User(
