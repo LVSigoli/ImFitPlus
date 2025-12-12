@@ -34,6 +34,8 @@ class UserRepository(context: Context) {
             put("baseCalories", user.baseCalories)
             put("idealWeight", user.idealWeight)
             put("waterConsumption", user.waterConsumption)
+            put("heartRate", user.heartRate)
+            put ("birthDate", user.birthDate)
             put("createdAt", System.currentTimeMillis())
         }
 

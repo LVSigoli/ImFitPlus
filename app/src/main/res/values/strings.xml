@@ -19,7 +19,7 @@
        Descubra seu perfil de saúde e receba recomendações personalizadas.
     </string>
     <string name="name_input_placeholder">Nome completo</string>
-    <string name="age_input_placeholder">Idade</string>
+    <string name="age_input_placeholder">Data de nascimento</string>
     <string name="height_m_input">Altura (m)</string>
     <string name="weight_kg_input">Peso (KG)</string>
     <string name="back_label">Voltar</string>
@@ -34,8 +34,8 @@
     <string name="calculate_ideal_weight">Calcular Peso ideal</string>
     <string name="end_activities">Finalizar</string>
     <string name="tell_weight">Informe seu peso</string>
-    <string name="tell_height">Informe sua alture</string>
-    <string name="tell_age">Informe sua idade</string>
+    <string name="tell_height">Informe sua altura</string>
+    <string name="tell_age">Informe sua data de nascimento no formato (yyyy/aa/dd).</string>
     <string name="tell_name">Informe seu nome</string>
     <string name="low_weight_category"><![CDATA[< 18.5 → Abaixo do peso]]></string>
     <string name="normal_weight_category">18.5 – 24.9 → Normal</string>

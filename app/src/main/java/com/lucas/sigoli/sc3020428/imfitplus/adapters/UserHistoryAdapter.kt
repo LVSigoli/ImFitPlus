@@ -16,6 +16,7 @@ class UserHistoryAdapter(
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val name = view.findViewById<TextView>(R.id.userName)
+        val age = view.findViewById<TextView>(R.id.userAge)
         val imc = view.findViewById<TextView>(R.id.userImc)
         val category = view.findViewById<TextView>(R.id.userCategory)
         val extra1 = view.findViewById<TextView>(R.id.userExtra1)
@@ -36,6 +37,8 @@ class UserHistoryAdapter(
         val user = item.user
 
         holder.name.text = "Usuario: ${user.name}"
+
+        holder.age.text = "Idade: ${user.age}"
 
         holder.imc.text = "IMC: ${user.imc}"
 

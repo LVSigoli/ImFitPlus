@@ -29,8 +29,10 @@ class OverviewActivity: AppCompatActivity() {
 
         userRepository = UserRepository(this)
         val idealWaterConsumption = calculateIdealWaterAmount(user?.weight)
+        val heartRate = calculateMaxHeartRate(user?.age)
 
-        saveUser(user, idealWaterConsumption)
+        saveUser(user, idealWaterConsumption, heartRate)
+
         binding = ActivityOverviewBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
@@ -45,10 +47,30 @@ class OverviewActivity: AppCompatActivity() {
 
         binding.weigthContainer.text = "Peso ideal: ${user?.idealWeight}"
 
-
         binding.caloriesContainer.text = "Gasto calórico diário: ${user?.baseCalories}"
 
         binding.waterConsumption.text = "Quantidade recomentada de Agua por dia: %.2f L".format(idealWaterConsumption)
+
+        binding.heartRate.text = "Frequêcia cardiaca máxima é : ${heartRate}"
+
+
+        binding.lightTrain.text = "Zona de treino Leve de ${heartRate?.times(0.5)} - ${heartRate?.times(
+            0.6
+        )} batimentos"
+
+        binding.burnFat.text = "Zona de treino para queima de gordura ${heartRate?.times(0.6)} - ${heartRate?.times(
+            0.7
+        )} batimentos"
+
+        binding.aerobic.text = "Zona de treino aeróbico ${heartRate?.times(0.7)} - ${heartRate?.times(
+            0.8
+        )} batimentos"
+
+        binding.notAerobic.text = "Zona de treino Anaeróbica ${heartRate?.times(0.8)} - ${heartRate?.times(
+            0.9
+        )} batimentos"
+
+
 
 
         binding.backButton.setOnClickListener { finish() }
@@ -73,11 +95,12 @@ class OverviewActivity: AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
-    fun saveUser(user:User?, waterConsumption: Double?){
+    fun saveUser(user:User?, waterConsumption: Double?, heartRate:Int?){
         if (user == null) return
 
         val updatedUser = user.copy(
-            waterConsumption = "%.2f".format(waterConsumption ?: 0.0)
+            waterConsumption = "%.2f".format(waterConsumption ?: 0.0),
+            heartRate = heartRate?:0
         )
 
         userRepository.insert(updatedUser)
@@ -87,6 +110,12 @@ class OverviewActivity: AppCompatActivity() {
         if(weight == null) return  0.00
 
         return 0.035 * weight
+    }
+
+    fun calculateMaxHeartRate(age: Int?): Int?{
+        if(age === null) return 0
+
+        return 220 - age
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -30,6 +30,10 @@ data class User(
 
     val idealWeight: String = "0,00",
 
-    val waterConsumption: String = "0,00"
+    val waterConsumption: String = "0,00",
+
+    val birthDate: String = "",
+
+    val heartRate: Int = 0
 
 ): Parcelable

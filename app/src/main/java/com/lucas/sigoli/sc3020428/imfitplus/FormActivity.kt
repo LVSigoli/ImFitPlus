@@ -23,6 +23,8 @@ import com.lucas.sigoli.sc3020428.imfitplus.enums.SportsLevel
 import androidx.appcompat.app.AppCompatActivity
 import com.lucas.sigoli.sc3020428.imfitplus.dtos.User
 import com.lucas.sigoli.sc3020428.imfitplus.databinding.ActivityFormBinding
+import java.time.LocalDate
+import java.time.Period
 
 class FormActivity : AppCompatActivity() {
 
@@ -134,10 +136,15 @@ class FormActivity : AppCompatActivity() {
 
         binding.sportsLevelSpinner.setSelection(user.sportsLevel.ordinal)
     }
+
+
+
     private fun createUser(): User {
         val name = binding.nameInput.text.toString()
 
-        val age = binding.ageInput.text.toString().toIntOrNull() ?: 0
+        val birthDate = binding.ageInput.text.toString()
+
+        val age =  calculateAge(birthDate)
 
         val height = binding.heightInput.text.toString().toDoubleOrNull() ?: 0.00
 
@@ -162,8 +169,10 @@ class FormActivity : AppCompatActivity() {
             else -> Gender.NAO_INFORMADO
         }
 
+
         return User(
             age = age,
+            birthDate = birthDate,
             name = name,
             gender = gender,
             weight = weight,
@@ -172,6 +181,19 @@ class FormActivity : AppCompatActivity() {
             imc = imc
         )
     }
+
+    private fun calculateAge(age: String): Int{
+        val day = age.split("/")[0].toInt()
+        val month = age.split("/")[1].toInt()
+        val year = age.split("/")[2].toInt()
+
+        val birthDate = LocalDate.of(year, month, day)
+        val currentDate = LocalDate.now()
+
+        return Period.between(birthDate, currentDate).years
+
+    }
+
 
     private fun calculateIMC(weight: Double, height: Double): String {
         val imc = weight / (height * height)

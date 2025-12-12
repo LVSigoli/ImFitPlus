@@ -21,6 +21,14 @@
             android:layout_height="wrap_content" />
 
         <TextView
+            android:id="@+id/userAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            />
+
+
+        <TextView
             android:id="@+id/userImc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:autofillHints=""
                 android:hint="@string/tell_age"
-                android:inputType="number"
+                android:inputType="text"
                 android:textSize="12sp" />
         </LinearLayout>
 

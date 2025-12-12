@@ -25,7 +25,9 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(
                 imcCategory TEXT NOT NULL,
                 baseCalories TEXT NOT NULL,
                 idealWeight TEXT NOT NULL, 
-                waterConsumption TEXT NOT NULL, 
+                waterConsumption TEXT NOT NULL,
+                birthDate TEXT NOT NULL, 
+                heartRate INTEGER NOT NULL,
                 createdAt TEXT DEFAULT CURRENT_TIMESTAMP
                 
             );
@@ -44,7 +46,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(
 
     companion object{
         const val DB_NAME = "imfitplus.db"
-        const val DB_VERSION = 1
+        const val DB_VERSION = 2
         }
 
 
